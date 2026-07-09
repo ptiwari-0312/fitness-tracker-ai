@@ -60,6 +60,9 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: str = ""
     ANTHROPIC_VISION_MODEL: str = "claude-haiku-4-5-20251001"
 
+    # ── Braintrust (eval reporting) ───────────────────────────────────────────
+    BRAINTRUST_API_KEY: str = ""
+
     # ── CORS ─────────────────────────────────────────────────────────────────
     ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:8081"
 
