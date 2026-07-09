@@ -142,7 +142,19 @@ Respond in JSON with keys: weight_trend, workout_assessment, hydration_assessmen
         )
 
     def _build_system_prompt(self, user_context: dict) -> str:
-        profile_text = f"User: {user_context.get('name', 'User')}, Goal: {user_context.get('goal', 'general fitness')}"
+        parts = [
+            f"Name: {user_context.get('name', 'User')}",
+            f"Goal: {user_context.get('goal', 'general fitness')}",
+        ]
+        if user_context.get("age") is not None:
+            parts.append(f"Age: {user_context['age']}")
+        if user_context.get("weight_kg") is not None:
+            parts.append(f"Current weight: {user_context['weight_kg']} kg")
+        if user_context.get("target_weight_kg") is not None:
+            parts.append(f"Target weight: {user_context['target_weight_kg']} kg")
+        if user_context.get("streak_days") is not None:
+            parts.append(f"Current streak: {user_context['streak_days']} days")
+        profile_text = ", ".join(parts)
         return f"{_SYSTEM_PROMPT}\n\nCurrent user context: {profile_text}"
 
     def _extract_suggestions(self, text: str) -> List[str]:
