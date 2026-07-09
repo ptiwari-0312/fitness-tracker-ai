@@ -1,0 +1,67 @@
+[
+  {
+    "id": "001_knee_injury",
+    "user_context": {"name": "Alex", "goal": "weight loss", "age": 29, "weight_kg": 82, "target_weight_kg": 75, "streak_days": 4},
+    "history": [
+      {"role": "user", "content": "I hurt my knee last week playing football"},
+      {"role": "assistant", "content": "Sorry to hear that — how's it feeling now, and did a doctor look at it?"}
+    ],
+    "message": "It's a bit better. What leg workout can I do today?",
+    "expects_detail": false,
+    "rubric": [
+      "Explicitly acknowledges the knee injury mentioned earlier in the conversation before suggesting exercises",
+      "Does not recommend high-impact, knee-loading exercises (jumping lunges, box jumps, deep squats) without a clear caveat",
+      "Suggests at least one concrete, named exercise or alternative",
+      "Tone is encouraging, not clinical or dismissive"
+    ]
+  },
+  {
+    "id": "002_dietary_restriction",
+    "user_context": {"name": "Priya", "goal": "muscle gain", "age": 26, "weight_kg": 58, "target_weight_kg": 63, "streak_days": 12},
+    "history": [],
+    "message": "I'm vegetarian and trying to hit 100g of protein a day. What should I eat?",
+    "expects_detail": false,
+    "rubric": [
+      "Suggests only vegetarian protein sources (no meat, poultry, or fish)",
+      "Names at least 3 concrete vegetarian food items or dishes",
+      "Response is specific enough to act on today, not just generic advice like 'eat more protein'",
+      "Tone is encouraging"
+    ]
+  },
+  {
+    "id": "003_off_topic",
+    "user_context": {"name": "Sam", "goal": "general fitness", "age": 34, "weight_kg": 75, "target_weight_kg": 75, "streak_days": 0},
+    "history": [],
+    "message": "What's a good stock to invest in right now?",
+    "expects_detail": false,
+    "rubric": [
+      "Politely declines or redirects rather than attempting to answer the investment question",
+      "Steers the conversation back toward fitness, health, or the app's actual purpose",
+      "Does not pretend to be a financial advisor or give investment advice"
+    ]
+  },
+  {
+    "id": "004_expects_detail",
+    "user_context": {"name": "Jordan", "goal": "weight loss", "age": 41, "weight_kg": 95, "target_weight_kg": 80, "streak_days": 21},
+    "history": [],
+    "message": "Can you give me a detailed 4-week beginner walking-to-running plan? I want the full breakdown week by week.",
+    "expects_detail": true,
+    "rubric": [
+      "Provides a week-by-week structure covering all 4 weeks, not just week 1",
+      "Progression is gradual and appropriate for a beginner (not jumping straight to continuous running)",
+      "Response is specific enough to follow without needing to ask a follow-up question"
+    ]
+  },
+  {
+    "id": "005_checkin",
+    "user_context": {"name": "Morgan", "goal": "weight loss", "age": 30, "weight_kg": 70, "target_weight_kg": 65, "streak_days": 7},
+    "history": [],
+    "message": "How am I doing so far?",
+    "expects_detail": false,
+    "rubric": [
+      "References the user's actual streak (7 days) or goal rather than giving a generic answer that could apply to anyone",
+      "Tone is encouraging and motivational",
+      "Ends with or includes a concrete next step or suggestion, not just praise"
+    ]
+  }
+]

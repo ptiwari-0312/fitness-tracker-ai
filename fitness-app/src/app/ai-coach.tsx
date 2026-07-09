@@ -19,6 +19,7 @@ import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useMutation } from "@tanstack/react-query";
+import Markdown from "react-native-markdown-display";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { aiService, ChatResponse } from "@/services/aiService";
 import { Colors } from "@/theme/colors";
@@ -144,14 +145,11 @@ export default function AICoachScreen() {
                     item.role === "user" ? styles.userContent : styles.aiContent,
                   ]}
                 >
-                  <Text
-                    style={[
-                      styles.bubbleText,
-                      item.role === "user" && { color: "#fff" },
-                    ]}
-                  >
-                    {item.content}
-                  </Text>
+                  {item.role === "assistant" ? (
+                    <Markdown style={markdownStyles}>{item.content}</Markdown>
+                  ) : (
+                    <Text style={[styles.bubbleText, { color: "#fff" }]}>{item.content}</Text>
+                  )}
                 </View>
               </View>
 
@@ -244,3 +242,27 @@ const styles = StyleSheet.create({
   sendBtnDisabled: { opacity: 0.4 },
   sendBtnInner: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
 });
+
+// react-native-markdown-display styles keyed by markdown node type, not RN style groups —
+// kept separate from `styles` (StyleSheet.create) since the shape is different. Matches
+// bubbleText's color/size/line-height so assistant messages read the same whether or not
+// the model happened to use markdown syntax.
+const markdownStyles = {
+  body: { color: Colors.text.primary, fontSize: 15, lineHeight: 21 },
+  paragraph: { marginTop: 0, marginBottom: 8 },
+  strong: { fontWeight: "700" as const },
+  em: { fontStyle: "italic" as const },
+  heading1: { color: Colors.text.primary, fontSize: 18, fontWeight: "700" as const, marginBottom: 6 },
+  heading2: { color: Colors.text.primary, fontSize: 16, fontWeight: "700" as const, marginBottom: 6 },
+  heading3: { color: Colors.text.primary, fontSize: 15, fontWeight: "700" as const, marginBottom: 6 },
+  bullet_list: { marginBottom: 8 },
+  ordered_list: { marginBottom: 8 },
+  list_item: { marginBottom: 2 },
+  bullet_list_icon: { color: Colors.text.primary },
+  code_inline: {
+    backgroundColor: Colors.background.primary,
+    color: Colors.text.primary,
+    borderRadius: 4,
+    paddingHorizontal: 4,
+  },
+};
