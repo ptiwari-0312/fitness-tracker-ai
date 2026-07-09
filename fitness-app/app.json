@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "FitnessTracker",
+    "slug": "fitness-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "fitnessapp",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.demo.fitnesstracker"
+    },
+    "android": {
+      "package": "com.demo.fitnesstracker"
+    },
+    "plugins": [
+      ["expo-router", { "root": "src/app" }],
+      "expo-secure-store"
+    ]
+  }
+}
