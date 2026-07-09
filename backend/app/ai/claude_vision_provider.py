@@ -40,7 +40,7 @@ class ClaudeVisionProvider:
         client = anthropic.AsyncAnthropic(api_key=self._api_key)
         response = await client.messages.create(
             model=self._model,
-            max_tokens=512,
+            max_tokens=1500,
             messages=[
                 {
                     "role": "user",
